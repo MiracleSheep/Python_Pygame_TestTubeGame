@@ -43,7 +43,7 @@ LIGHT_GREEN = (128,255,0)
 # A list of all colours that can be in a test tube
 # For the testube object
 DIFFICULTY_ORDER = [RED, BLUE, GREEN, YELLOW, PINK, PURPLE, ORANGE, AQUA, LIGHT_GREEN, LIGHT_BLUE]
-
+COLOUR_NAMES = ["Red", "Blue", "Green", "Yellow", "Pink", "Purple", "Orange", "Aqua", "Light_Green", "Light_Blue"]
 
 # A value that sets the FPS of the game
 FPS = 60
@@ -74,12 +74,14 @@ def main():
         response = input("Would you like to start a game of test tube sorting?")
 
         # checking what the user's response was
-        if response == 1:
+        if response == '1':
 
             # starting a game loop
             #Asking for the difficulty of the game
             difficulty = input("Please enter a number for difficulty")
             tubes = input("Please enter a number for number of test tubes")
+            difficulty = int(difficulty)
+            tubes = int(tubes)
 
             continuegame = True
             g = game.Game(difficulty,tubes)
@@ -87,8 +89,47 @@ def main():
 
                 checktubes = True
                 while checktubes:
-                    print("There are " + g.tubearray.len() + "tubes in this game.")
+                    print("There are " + str(len(g.tubearray)) + " tubes in this game.")
                     check = input("Please choose a tube to check")
+                    check = int(check)
+
+                    if check - 1 > len(g.tubearray) - 1 or check - 1 < 0:
+                        print("That is not a viable number")
+                    else:
+                        if g.tubearray[check - 1].isempty():
+                            print("Empty")
+                        else:
+                            for x in range(0,len(g.tubearray[check - 1].stack)):
+                                for y in range(0, len(DIFFICULTY_ORDER)):
+                                    if DIFFICULTY_ORDER[y] == g.tubearray[check - 1].stack[x].colour:
+                                        print(COLOUR_NAMES[y])
+
+
+
+
+                    print("Those are all the colours in that tube.")
+                    response = input("Would you like to move on?")
+                    if response == '1':
+                        checktubes = False
+                    else:
+                        checktubes = True
+
+
+                initial = input("What tube would you like to select?")
+                final = input("What final tube would you like to select?")
+                initial  = int(initial)
+                final = int(final)
+                g.movecolour(initial-1,final-1)
+
+
+                if g.iswon():
+                    print("Congratulations, you win!")
+                    continuegame = False
+
+
+
+
+
 
 
 

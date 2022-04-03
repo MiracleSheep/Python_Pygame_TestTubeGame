@@ -33,11 +33,24 @@ class Game:
         # the total number of colour units allowed for each colour are stored in this array
         colourlist = [main.VOLUME] * colournum
 
+        # initializing tubearray
+        tubearray = [0] * tubes
+
+        # Calculating the number of empty tubes that should exist
+        emptytubes = int(round(tubes/5))
+        if emptytubes < 1:
+            emptytubes = 1
+
+
         # filling tube arrray with test tube objects
-        tubearray = [tube.TestTube(self.fillstack(colourlist))] * (tubes - 2)
-        tubearray[tubes - 1] = tube.TestTube(self.emptystack())
+        for x in range(0,tubes):
+            tubearray[x] = tube.TestTube(self.fillstack(colourlist))
 
+        # filling the array with empty testubeobjescts
+        for x in range(0, emptytubes):
+            tubearray.append(tube.TestTube(list()))
 
+        return tubearray
 
     #method to fill a stack with colours
     def fillstack(self, colourlist):
@@ -47,7 +60,7 @@ class Game:
         for x in range(0,main.VOLUME):
 
             while True:
-                cnum = random.randint(0, colourlist.len())
+                cnum = random.randint(0,len(colourlist) - 1)
                 if colourlist[cnum] > 0:
                     colourlist[cnum] = colourlist[cnum] - 1
                     break
@@ -63,18 +76,23 @@ class Game:
 
     # method to do a colour transaction between two test tubes
     def movecolour(self,initial,final):
+
         istherespace = True
         while istherespace:
-            if initial.topcolour().colour == final.topcolour().colour and final.checkvolume() < main.VOLUME:
-                movecolour = initial.topcolour()
-                initial.removecolor(movecolour)
-                final.addcolor(movecolour)
+            if self.tubearray[initial].topcolour().colour == self.tubearray[final].topcolour().colour or self.tubearray[final].isempty():
+                if self.tubearray[final].checkvolume() < main.VOLUME:
+                    movecolour = self.tubearray[initial].topcolour()
+                    self.tubearray[initial].removecolor(movecolour)
+                    self.tubearray[final].addcolor(movecolour)
+                else:
+                    istherespace = False
             else:
                 istherespace = False
 
+
     # method to detect if a game is won
     def iswon(self):
-        for x in self.tubearray:
+        for x in range(0,len(self.tubearray)):
             if self.tubearray[x].iscomplete() == False:
                 return False
         return True

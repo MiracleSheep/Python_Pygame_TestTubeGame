@@ -16,7 +16,7 @@ class TestTube:
     def checkvolume(self):
 
         #sum will be equal to the actial volume in the stack
-        sum = self.stack.len()
+        sum = len(self.stack)
 
         # making sure that the correct volume is in the test tube
         if sum > self.volume:
@@ -27,32 +27,30 @@ class TestTube:
 
     #This method checks if the most recent color is equal to the parameter
     def iscoloursame(self, rgb):
-        if self.stack[-1].colour == rgb:
+
+
+        if not bool(self.stack):
             return True
-
-
-    # This is a function to check if a move is valid - it does this by making sure that the amount of liquid
-    # to be moved to the test tube overfills the tube.
-    def ismovelegal(self, rgb):
-        self.checkvolume()
-        if self.iscoloursame(rgb):
+        elif self.stack[-1].colour == rgb.colour:
             return True
         else:
             return False
 
+
+
     # This function is meant to add a colour to the test tube
     def addcolor(self, rgb):
-        if self.ismovelegal(rgb):
+        self.checkvolume()
+        if self.iscoloursame(rgb):
                 self.stack.append(color.Colour(rgb))
                 self.checkvolume()
         else:
             raise Exception("There was a problem adding the colours.")
 
-
     # This function is meant to remove the top colour from the test tube
     def removecolor(self, rgb):
-        if self.ismovelegal(rgb):
-                    self.iscoloursame(rgb)
+        self.checkvolume()
+        if self.iscoloursame(rgb):
                     self.stack.pop()
                     self.checkvolume()
         else:
@@ -60,18 +58,33 @@ class TestTube:
 
     # This function returns the colour at the top of the stack
     def topcolour(self):
-        return self.stack[-1]
+        if not bool(self.stack):
+            return color.Colour(main.WHITE)
+        else:
+            return self.stack[-1]
 
     # This function returns whether or not the stack is complete
     def iscomplete(self):
 
         # making a for loop to check if a test tube is full of one colour or empty
         recentcolour = self.topcolour()
-        if self.stack.len() == 0:
+        if len(self.stack) == 0:
             return True
-        for x in self.stack:
+        for x in range(0,len(self.stack)):
             if self.stack[x].colour == recentcolour:
                 pass
             else:
                 return False
         return True
+
+    # This fuction checks specifically if a tube is empty
+    def isempty(self):
+        if bool(self.stack):
+            return False
+        else:
+            return True
+
+    #This method will empty a testube
+    def empty(self):
+        for x in self.stack:
+            self.stack.pop()
