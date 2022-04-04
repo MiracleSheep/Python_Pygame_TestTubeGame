@@ -42,10 +42,12 @@ class TestTube:
     def addcolor(self, rgb):
         self.checkvolume()
         if self.iscoloursame(rgb):
-                self.stack.append(color.Colour(rgb))
-                self.checkvolume()
+            self.stack.append(rgb)
+            self.checkvolume()
+            return True
         else:
-            raise Exception("There was a problem adding the colours.")
+            print("Those colours are not the same.")
+            return False
 
     # This function is meant to remove the top colour from the test tube
     def removecolor(self, rgb):
@@ -53,8 +55,10 @@ class TestTube:
         if self.iscoloursame(rgb):
                     self.stack.pop()
                     self.checkvolume()
+                    return True
         else:
-            raise Exception("There was a problem subtracting the colours.")
+            print("Those colours are not the same.")
+            return False
 
     # This function returns the colour at the top of the stack
     def topcolour(self):
@@ -68,14 +72,17 @@ class TestTube:
 
         # making a for loop to check if a test tube is full of one colour or empty
         recentcolour = self.topcolour()
-        if len(self.stack) == 0:
+        if self.isempty():
             return True
-        for x in range(0,len(self.stack)):
-            if self.stack[x].colour == recentcolour:
-                pass
-            else:
-                return False
-        return True
+        if len(self.stack) == main.VOLUME:
+            for x in range(0,len(self.stack)):
+                if self.stack[x].colour == recentcolour.colour:
+                    pass
+                else:
+                    return False
+            return True
+        else:
+            return False
 
     # This fuction checks specifically if a tube is empty
     def isempty(self):

@@ -38,8 +38,8 @@ class Game:
 
         # Calculating the number of empty tubes that should exist
         emptytubes = int(round(tubes/5))
-        if emptytubes < 1:
-            emptytubes = 1
+        if emptytubes < 2:
+            emptytubes = 2
 
 
         # filling tube arrray with test tube objects
@@ -79,11 +79,12 @@ class Game:
 
         istherespace = True
         while istherespace:
-            if self.tubearray[initial].topcolour().colour == self.tubearray[final].topcolour().colour or self.tubearray[final].isempty():
+            if self.tubearray[initial].iscoloursame(self.tubearray[final].topcolour()) or self.tubearray[final].isempty():
                 if self.tubearray[final].checkvolume() < main.VOLUME:
                     movecolour = self.tubearray[initial].topcolour()
-                    self.tubearray[initial].removecolor(movecolour)
-                    self.tubearray[final].addcolor(movecolour)
+                    if not self.tubearray[initial].isempty():
+                        istherespace = self.tubearray[initial].removecolor(movecolour)
+                        istherespace = self.tubearray[final].addcolor(movecolour)
                 else:
                     istherespace = False
             else:

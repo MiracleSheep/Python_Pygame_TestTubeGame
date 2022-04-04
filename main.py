@@ -142,7 +142,7 @@ def main():
         else:
             # asking the user if they would like to quit the program
             response = input("Would you like to quit the program?")
-            if response == 1:
+            if response == '1':
                 print("Good choice. Ending this horrible game now...")
                 boolcontinue = False
             else:
