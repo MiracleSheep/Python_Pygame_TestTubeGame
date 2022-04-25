@@ -1,6 +1,6 @@
 # importing other files
 import color
-import main
+import TestTubeGame
 
 # This is the test tube class for the minigame.
 # Things it should be capable of:
@@ -9,7 +9,7 @@ class TestTube:
 
     # This function initializes the variables of the test tube
     def __init__(self, stack):
-        self.volume = main.VOLUME
+        self.volume = TestTubeGame.VOLUME
         self.stack = stack
 
     # This function is intended to count the amount of volume in the test tube
@@ -63,7 +63,7 @@ class TestTube:
     # This function returns the colour at the top of the stack
     def topcolour(self):
         if not bool(self.stack):
-            return color.Colour(main.WHITE)
+            return color.Colour(TestTubeGame.WHITE)
         else:
             return self.stack[-1]
 
@@ -74,7 +74,7 @@ class TestTube:
         recentcolour = self.topcolour()
         if self.isempty():
             return True
-        if len(self.stack) == main.VOLUME:
+        if len(self.stack) == TestTubeGame.VOLUME:
             for x in range(0,len(self.stack)):
                 if self.stack[x].colour == recentcolour.colour:
                     pass

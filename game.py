@@ -3,7 +3,7 @@
 #importing classes
 import tube
 import color
-import main
+import TestTubeGame
 import random
 
 #Declaring the class
@@ -31,7 +31,7 @@ class Game:
 
         # this array is for the number of any given colour
         # the total number of colour units allowed for each colour are stored in this array
-        colourlist = [main.VOLUME] * colournum
+        colourlist = [TestTubeGame.VOLUME] * colournum
 
         # initializing tubearray
         tubearray = [0] * tubes
@@ -55,9 +55,9 @@ class Game:
     #method to fill a stack with colours
     def fillstack(self, colourlist):
 
-        stack = [color.Colour(main.WHITE)] * main.VOLUME
+        stack = [color.Colour(TestTubeGame.WHITE)] * TestTubeGame.VOLUME
 
-        for x in range(0,main.VOLUME):
+        for x in range(0, TestTubeGame.VOLUME):
 
             while True:
                 cnum = random.randint(0,len(colourlist) - 1)
@@ -65,13 +65,13 @@ class Game:
                     colourlist[cnum] = colourlist[cnum] - 1
                     break
 
-            stack[x] = color.Colour(main.DIFFICULTY_ORDER[cnum])
+            stack[x] = color.Colour(TestTubeGame.DIFFICULTY_ORDER[cnum])
 
         return stack
 
     # method to fill stack with nothing
     def emptystack(self):
-        array = [0]*main.VOLUME
+        array = [0] * TestTubeGame.VOLUME
         return array
 
     # method to do a colour transaction between two test tubes
@@ -80,7 +80,7 @@ class Game:
         istherespace = True
         while istherespace:
             if self.tubearray[initial].iscoloursame(self.tubearray[final].topcolour()) or self.tubearray[final].isempty():
-                if self.tubearray[final].checkvolume() < main.VOLUME:
+                if self.tubearray[final].checkvolume() < TestTubeGame.VOLUME:
                     movecolour = self.tubearray[initial].topcolour()
                     if not self.tubearray[initial].isempty():
                         istherespace = self.tubearray[initial].removecolor(movecolour)
