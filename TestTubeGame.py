@@ -91,8 +91,7 @@ def main():
 
         # This is a row of if statements that check what the menu number is
         if Menu_Number == 0:
-            background_position_x = opening_screen(background_position_x)
-            # Menu_Number = Graphical_User_Interface.opening_screen(Menu_Number)
+            background_position_x = Graphical_User_Interface.opening_screen(background_position_x)
 
         pygame.display.update()
 
@@ -104,28 +103,6 @@ def main():
 
 
 
-
-
-def opening_screen(background_position):
-
-
-    # Loading in the miage that will be used as a background for the opneing screen
-    TEST_TUBE_ROW_IMAGE = pygame.image.load(os.path.join('assets', 'TestTubeGame_TestTubeRow.png'))
-    TEST_TUBE_OPENING_SCREEN_IMAGE = pygame.transform.scale(TEST_TUBE_ROW_IMAGE, (WIDTH, HEIGHT))
-
-    pos_x = background_position
-    pos_x -= 1
-
-    # Drawing the background
-    WINDOW.blit(TEST_TUBE_OPENING_SCREEN_IMAGE, (pos_x, 0))
-    WINDOW.blit(TEST_TUBE_OPENING_SCREEN_IMAGE, (WIDTH + pos_x, 0))
-
-    if (pos_x == -WIDTH):
-        WINDOW.blit(TEST_TUBE_OPENING_SCREEN_IMAGE, (WIDTH + pos_x, 0))
-        pos_x = 0
-    background_position -= 1
-
-    return pos_x
 
 
 
