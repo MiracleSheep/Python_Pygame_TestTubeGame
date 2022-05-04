@@ -74,9 +74,6 @@ def main():
     # This variable is responsible for any moving background
     background_position_x = 0
 
-    # This variable will be used to keep track of what menu the game is on
-    Menu_Number = 0
-
     # This is the while loop that controls the game
     run = True
     while run:
@@ -90,7 +87,7 @@ def main():
                 run = False
 
         # This is a row of if statements that check what the menu number is
-        if Menu_Number == 0:
+        if Graphical_User_Interface.Menu_Number == 0:
             background_position_x = Graphical_User_Interface.opening_screen(background_position_x)
 
         pygame.display.update()

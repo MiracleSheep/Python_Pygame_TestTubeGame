@@ -4,13 +4,15 @@ import game
 import pygame
 import TestTubeGame
 import os
+import button
 
 #initializing the main class for the gui
 class Gui:
 
     #Init method
     def __init__(self):
-        pass
+        self.Menu_Number = 0
+
 
     # This method draws the opening screen
     def opening_screen(self, background_position):
@@ -29,6 +31,13 @@ class Gui:
             TestTubeGame.WINDOW.blit(TEST_TUBE_OPENING_SCREEN_IMAGE, (TestTubeGame.WIDTH + pos_x, 0))
             pos_x = 0
 
+
+        #Creating the menu button
+        start_button = button.Button(TestTubeGame.WIDTH//2 - 50, TestTubeGame.HEIGHT//2 - 50, 100, 100, [255,0,0], "Start", [255,255,255])
+        start_button.draw_button()
+
+        if start_button.isclicked():
+            self.Menu_Number = 1
 
         return pos_x
 

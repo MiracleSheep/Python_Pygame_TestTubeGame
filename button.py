@@ -28,9 +28,10 @@ class Button:
 
         #Drawing in the text
         # defining a font
-        smallfont = pygame.font.SysFont('Corbel', [self.width/2])
+        pygame.font.init()
+        smallfont = pygame.font.SysFont('Corbel', self.width//2)
         text = smallfont.render(self.text, True, self.textcolour)
-        TestTubeGame.WINDOW.blit(text, (self.x + self.width, self.y + self.length))
+        TestTubeGame.WINDOW.blit(text, (self.x + self.width//2, self.y + self.length//2))
 
     # This method will be used to detect if a button is clicked
     def isclicked(self):
