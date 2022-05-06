@@ -9,7 +9,7 @@ class Button:
 
     #the initializing method
     # It will take all the sizes of the button
-    def __init__(self, x,y, length, width, colour, text, textcolour):
+    def __init__(self, x,y, length, width, colour, text, textcolour, textsize):
         self.length = length
         self.width = width
         self.colour = colour
@@ -17,21 +17,28 @@ class Button:
         self.x = x
         self.y = y
         self.textcolour = textcolour
+        self.textsize = textsize
+
 
     #this mehod will be in charge of drawing the button
     def draw_button(self):
         #Drawing in the square
         if self.isclicked():
-            pygame.draw.rect(TestTubeGame.WINDOW, [255,255,255], [self.x, self.y, self.width, self.length])
+
+            pygame.draw.rect(TestTubeGame.WINDOW, [255, 255, 255], [self.x, self.y, self.width, self.length])
+            pygame.draw.rect(TestTubeGame.WINDOW, [255, 255, 255], [self.x, self.y, self.width, self.length], 2)
         else:
+
             pygame.draw.rect(TestTubeGame.WINDOW, self.colour, [self.x, self.y, self.width, self.length])
+            pygame.draw.rect(TestTubeGame.WINDOW, self.colour, [self.x, self.y, self.width, self.length], 2)
 
         #Drawing in the text
         # defining a font
         pygame.font.init()
-        smallfont = pygame.font.SysFont('Corbel', self.width//2)
+        smallfont = pygame.font.SysFont('Corbel', self.textsize)
         text = smallfont.render(self.text, True, self.textcolour)
-        TestTubeGame.WINDOW.blit(text, (self.x + self.width//2, self.y + self.length//2))
+        textsize = text.get_size()
+        TestTubeGame.WINDOW.blit(text, (self.x + (self.width - textsize[0])//2, self.y + (self.width - textsize[1])//2))
 
     # This method will be used to detect if a button is clicked
     def isclicked(self):

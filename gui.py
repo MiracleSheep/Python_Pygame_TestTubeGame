@@ -33,7 +33,7 @@ class Gui:
 
 
         #Creating the menu button
-        start_button = button.Button(TestTubeGame.WIDTH//2 - 50, TestTubeGame.HEIGHT//2 - 50, 100, 100, [255,0,0], "Start", [255,255,255])
+        start_button = button.Button(TestTubeGame.WIDTH//2 - 50, TestTubeGame.HEIGHT//2 - 50, 100, 100, [255,0,0], "Start", [255,255,255], 10)
         start_button.draw_button()
 
         if start_button.isclicked():
