@@ -27,6 +27,7 @@ class Button:
 
             pygame.draw.rect(TestTubeGame.WINDOW, [255, 255, 255], [self.x, self.y, self.width, self.length])
             pygame.draw.rect(TestTubeGame.WINDOW, [255, 255, 255], [self.x, self.y, self.width, self.length], 2)
+            return True
         else:
 
             pygame.draw.rect(TestTubeGame.WINDOW, self.colour, [self.x, self.y, self.width, self.length])
@@ -39,6 +40,7 @@ class Button:
         text = smallfont.render(self.text, True, self.textcolour)
         textsize = text.get_size()
         TestTubeGame.WINDOW.blit(text, (self.x + (self.width - textsize[0])//2, self.y + (self.width - textsize[1])//2))
+        return False
 
     # This method will be used to detect if a button is clicked
     def isclicked(self):
@@ -52,7 +54,7 @@ class Button:
             # proceed events
             for event in ev:
                 # handle MOUSEBUTTONUP
-                if event.type == pygame.MOUSEBUTTONUP:
+                if event.type == pygame.MOUSEBUTTONDOWN:
                     return True
 
 

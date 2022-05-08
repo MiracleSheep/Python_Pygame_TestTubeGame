@@ -89,6 +89,11 @@ def main():
         # This is a row of if statements that check what the menu number is
         if Graphical_User_Interface.Menu_Number == 0:
             background_position_x = Graphical_User_Interface.opening_screen(background_position_x)
+        elif Graphical_User_Interface.Menu_Number == 1:
+            background_position_x = Graphical_User_Interface.pregame_menu(background_position_x)
+        elif Graphical_User_Interface.Menu_Number == 2:
+            Graphical_User_Interface.game_screen()
+            pass
 
         pygame.display.update()
 
