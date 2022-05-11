@@ -5,6 +5,7 @@ import pygame
 import TestTubeGame
 import os
 import button
+import math
 
 #initializing the main class for the gui
 class Gui:
@@ -113,13 +114,23 @@ class Gui:
     #This method is for the actual game.
 
     def game_screen(self):
+
+
             TestTubeGame.WINDOW.fill([255,255,255])
             TEST_TUBE_IMAGE = pygame.image.load(os.path.join('assets', 'test_tube_better.png'))
-            TEST_TUBE_IMAGE = pygame.transform.scale(TEST_TUBE_IMAGE,(TestTubeGame.WIDTH//20, TestTubeGame.HEIGHT//5))
+
+            #Getting the total amount of allowed space for the testubes to take up
+            total_test_tube_size = int((TestTubeGame.WIDTH*TestTubeGame.HEIGHT)*TestTubeGame.PERCENT_TUBE)
+            # Getting the allowed area for each test tube
+            test_tube_size = total_test_tube_size//self.game.number_of_tubes()
+            # Getting the size units that will be used in the ratio
+            test_tube_x = math.sqrt(test_tube_size//TestTubeGame.HWR)
+
+            TEST_TUBE_IMAGE = pygame.transform.scale(TEST_TUBE_IMAGE,(test_tube_x, test_tube_x*TestTubeGame.HWR))
 
 
             # Starting a for loop that will be meant to draw all of the test tubes
-            for x in range(self.tubes):
+            for x in range(self.game.number_of_tubes()):
 
                 current_x = 0
                 current_y = 0
@@ -134,8 +145,8 @@ class Gui:
                     TestTubeGame.WINDOW.blit(TEST_TUBE_IMAGE, (current_x,current_y))
 
                 #This loop is meant to fill up the test tubes with its colours
-                for x in range(self.game.tubearray[x].checkvolume()):
-                    pygame.draw.rect(TestTubeGame.WINDOW,self.game.tubearray[x].topcolour().colour, [current_x + (TestTubeGame.WIDTH//20 - 30)//2 ,(current_y + (TestTubeGame.HEIGHT//5 - 10) - ((TestTubeGame.HEIGHT//5)//TestTubeGame.VOLUME - 10)*x), TestTubeGame.WIDTH//20 - 30, (TestTubeGame.HEIGHT//5)//TestTubeGame.VOLUME - 10])
+                for y in range(self.game.tubearray[x].checkvolume()):
+                    pygame.draw.rect(TestTubeGame.WINDOW,self.game.tubearray[x].stack[y].colour, [current_x + (TestTubeGame.WIDTH//20 - 30)//2 ,(current_y + (TestTubeGame.HEIGHT//5 - 10) - ((TestTubeGame.HEIGHT//5)//TestTubeGame.VOLUME - 10)*y), TestTubeGame.WIDTH//20 - 30, (TestTubeGame.HEIGHT//5)//TestTubeGame.VOLUME - 10])
 
 
 

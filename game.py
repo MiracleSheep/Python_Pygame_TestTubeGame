@@ -98,4 +98,8 @@ class Game:
                 return False
         return True
 
+    #Method to count the total number of tubes
+    def number_of_tubes(self):
+        return len(self.tubearray)
+
 
