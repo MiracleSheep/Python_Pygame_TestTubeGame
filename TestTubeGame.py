@@ -28,7 +28,12 @@ VOLUME = 4
 # Window of the game
 WINDOW = pygame.display.set_mode((WIDTH,HEIGHT))
 #The percent of the screen that the tubes should take up
-PERCENT_TUBE = 0.35
+PERCENT_TUBE = 0.20
+# Percent of the screen height taken up by the game
+PERCENT_GAME_HEIGHT = 0.75
+PERCENT_GAME_WIDTH = 0.90
+# Height buffer between test tubes
+HEIGHT_BUFFER_TEST_TUBES = 100
 # The ratio of height to width (blank:one)
 HWR = 4
 # Colours

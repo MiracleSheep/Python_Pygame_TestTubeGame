@@ -125,24 +125,35 @@ class Gui:
             test_tube_size = total_test_tube_size//self.game.number_of_tubes()
             # Getting the size units that will be used in the ratio
             test_tube_x = math.sqrt(test_tube_size//TestTubeGame.HWR)
+            test_tube_y = test_tube_x*TestTubeGame.HWR
 
-            TEST_TUBE_IMAGE = pygame.transform.scale(TEST_TUBE_IMAGE,(test_tube_x, test_tube_x*TestTubeGame.HWR))
+            # This is the size of the iage
+            TEST_TUBE_IMAGE = pygame.transform.scale(TEST_TUBE_IMAGE,(test_tube_x, test_tube_y))
+
+            # available room for test tubes to be distributed
+            available_height = TestTubeGame.HEIGHT - (TestTubeGame.HEIGHT*(1-TestTubeGame.PERCENT_GAME_HEIGHT))
+            available_width = TestTubeGame.WIDTH - (TestTubeGame.WIDTH * (1 - TestTubeGame.PERCENT_GAME_WIDTH))
+            # This variable will hold the vertical size of each row
+            row_size = test_tube_x*TestTubeGame.HWR + 100
+            # this variable will hold the number of rows
+            row_number = available_height//row_size
+            # how many tubes per row
+            row_tube_number = self.game.number_of_tubes()//row_number
+            print(row_tube_number)
+
+
 
 
             # Starting a for loop that will be meant to draw all of the test tubes
             for x in range(self.game.number_of_tubes()):
 
-                current_x = 0
-                current_y = 0
+                current_tube_number = (x % row_tube_number) + (x//row_tube_number)
+                current_row_number = (x//row_tube_number)+1
 
-                if x >= 5:
-                    current_x = (TestTubeGame.WIDTH // 6) * (x - 4) - (TestTubeGame.WIDTH // 20) // 2
-                    current_y = (TestTubeGame.HEIGHT // 3) * 2 - (TestTubeGame.HEIGHT // 10) // 2
-                    TestTubeGame.WINDOW.blit(TEST_TUBE_IMAGE, (current_x,current_y))
-                else:
-                    current_x = ((TestTubeGame.WIDTH//6)*(x+1)) - ((TestTubeGame.WIDTH//20)//2)
-                    current_y =  (TestTubeGame.HEIGHT//3)*1 - (TestTubeGame.HEIGHT//10)//2
-                    TestTubeGame.WINDOW.blit(TEST_TUBE_IMAGE, (current_x,current_y))
+
+                current_x = (TestTubeGame.WIDTH//(row_tube_number+1))*(current_tube_number + 1) - test_tube_x
+                current_y = (TestTubeGame.HEIGHT // row_number+1) * (row_number - current_row_number) - test_tube_y
+                TestTubeGame.WINDOW.blit(TEST_TUBE_IMAGE, (current_x, current_y))
 
                 #This loop is meant to fill up the test tubes with its colours
                 for y in range(self.game.tubearray[x].checkvolume()):
