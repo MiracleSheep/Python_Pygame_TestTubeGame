@@ -33,7 +33,9 @@ PERCENT_TUBE = 0.20
 PERCENT_GAME_HEIGHT = 0.75
 PERCENT_GAME_WIDTH = 0.90
 # Height buffer between test tubes
-HEIGHT_BUFFER_TEST_TUBES = 100
+BUFFER = 0.1
+# Height buffer between test tubes
+SPACER = 0.3
 # The ratio of height to width (blank:one)
 HWR = 4
 # Colours

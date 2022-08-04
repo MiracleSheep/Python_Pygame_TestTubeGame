@@ -88,19 +88,19 @@ class Gui:
         #This tuple will be used to hold values
 
         if easy_colour_button.draw_button():
-            self.difficulty = 4
+            self.difficulty = 6
 
         if medium_colour_button.draw_button():
-            self.difficulty = 7
+            self.difficulty = 8
 
         if hard_colour_button.draw_button():
             self.difficulty = 10
 
         if easy_tube_button.draw_button():
-            self.tubes = 5
+            self.tubes = 6
 
         if medium_tube_button.draw_button():
-            self.tubes = 7
+            self.tubes = 8
 
         if hard_tube_button.draw_button():
             self.tubes = 10
@@ -131,34 +131,58 @@ class Gui:
             TEST_TUBE_IMAGE = pygame.transform.scale(TEST_TUBE_IMAGE,(test_tube_x, test_tube_y))
 
             # available room for test tubes to be distributed
-            available_height = TestTubeGame.HEIGHT - (TestTubeGame.HEIGHT*(1-TestTubeGame.PERCENT_GAME_HEIGHT))
-            available_width = TestTubeGame.WIDTH - (TestTubeGame.WIDTH * (1 - TestTubeGame.PERCENT_GAME_WIDTH))
+            available_height = int((TestTubeGame.HEIGHT*(TestTubeGame.PERCENT_GAME_HEIGHT)))
             # This variable will hold the vertical size of each row
-            row_size = test_tube_x*TestTubeGame.HWR + 100
+            row_size = test_tube_x*TestTubeGame.HWR + 50
             # this variable will hold the number of rows
             row_number = available_height//row_size
             # how many tubes per row
             row_tube_number = self.game.number_of_tubes()//row_number
-            print(row_tube_number)
-
-
+            print("tubes per row: " + str(row_tube_number))
+            print("number of rows: " + str(row_number))
+            print("number of tubes " + str(self.game.number_of_tubes()))
+            # value that will account for missarangements of size
+            spacing = 0
 
 
             # Starting a for loop that will be meant to draw all of the test tubes
             for x in range(self.game.number_of_tubes()):
 
-                current_tube_number = (x % row_tube_number) + (x//row_tube_number)
-                current_row_number = (x//row_tube_number)+1
+                current_tube_number = (x % row_tube_number)
+                # print("Current tube number: " + str(current_tube_number))
+                current_row_number = (x//row_tube_number)
 
 
-                current_x = (TestTubeGame.WIDTH//(row_tube_number+1))*(current_tube_number + 1) - test_tube_x
-                current_y = (TestTubeGame.HEIGHT // row_number+1) * (row_number - current_row_number) - test_tube_y
+                current_x = (TestTubeGame.WIDTH//(row_tube_number+1))*(current_tube_number + 1) - test_tube_x//2
+                current_y = TestTubeGame.HEIGHT - (((available_height) // row_number) * (row_number - current_row_number) - test_tube_y//2)
+
+                spacing = TestTubeGame.BUFFER*test_tube_y
+                offset = TestTubeGame.SPACER*test_tube_y
+
+
+                if current_row_number%2 == 1:
+                    pass
+                else:
+                    current_y = current_y - spacing
+
+                if current_row_number == row_number:
+                    while current_y + test_tube_y > TestTubeGame.HEIGHT:
+                        offset += 1
+
+                current_y = current_y - offset
+
+
+
+
+
                 TestTubeGame.WINDOW.blit(TEST_TUBE_IMAGE, (current_x, current_y))
 
                 #This loop is meant to fill up the test tubes with its colours
                 for y in range(self.game.tubearray[x].checkvolume()):
                     pygame.draw.rect(TestTubeGame.WINDOW,self.game.tubearray[x].stack[y].colour, [current_x + (TestTubeGame.WIDTH//20 - 30)//2 ,(current_y + (TestTubeGame.HEIGHT//5 - 10) - ((TestTubeGame.HEIGHT//5)//TestTubeGame.VOLUME - 10)*y), TestTubeGame.WIDTH//20 - 30, (TestTubeGame.HEIGHT//5)//TestTubeGame.VOLUME - 10])
 
+    # def isclicked(self, current_x, current_y, test_tube_x, test_tube_y):
+    #     if ()
 
 
 
