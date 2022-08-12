@@ -119,8 +119,11 @@ class Gui:
             TestTubeGame.WINDOW.fill([255,255,255])
             TEST_TUBE_IMAGE = pygame.image.load(os.path.join('assets', 'test_tube_better.png'))
 
+            #Getting the total amount of area that the testtubes will be in
+            available_area = int(TestTubeGame.WIDTH*TestTubeGame.HEIGHT*TestTubeGame.PERCENT_GAME_HEIGHT)
+
             #Getting the total amount of allowed space for the testubes to take up
-            total_test_tube_size = int((TestTubeGame.WIDTH*TestTubeGame.HEIGHT)*TestTubeGame.PERCENT_TUBE)
+            total_test_tube_size = int(available_area*TestTubeGame.PERCENT_TUBE)
             # Getting the allowed area for each test tube
             test_tube_size = total_test_tube_size//self.game.number_of_tubes()
             # Getting the size units that will be used in the ratio
@@ -133,16 +136,15 @@ class Gui:
             # available room for test tubes to be distributed
             available_height = int((TestTubeGame.HEIGHT*(TestTubeGame.PERCENT_GAME_HEIGHT)))
             # This variable will hold the vertical size of each row
-            row_size = test_tube_x*TestTubeGame.HWR + 50
+            row_size = test_tube_y + TestTubeGame.BUFFER
             # this variable will hold the number of rows
-            row_number = available_height//row_size
+            row_number = (available_height//row_size)+1
             # how many tubes per row
             row_tube_number = self.game.number_of_tubes()//row_number
             print("tubes per row: " + str(row_tube_number))
             print("number of rows: " + str(row_number))
             print("number of tubes " + str(self.game.number_of_tubes()))
-            # value that will account for missarangements of size
-            spacing = 0
+
 
 
             # Starting a for loop that will be meant to draw all of the test tubes
@@ -154,22 +156,22 @@ class Gui:
 
 
                 current_x = (TestTubeGame.WIDTH//(row_tube_number+1))*(current_tube_number + 1) - test_tube_x//2
-                current_y = TestTubeGame.HEIGHT - (((available_height) // row_number) * (row_number - current_row_number) - test_tube_y//2)
+                current_y =  TestTubeGame.HEIGHT - ((available_height//(row_number)) * (current_row_number))
 
-                spacing = TestTubeGame.BUFFER*test_tube_y
-                offset = TestTubeGame.SPACER*test_tube_y
-
-
-                if current_row_number%2 == 1:
-                    pass
-                else:
-                    current_y = current_y - spacing
-
-                if current_row_number == row_number:
-                    while current_y + test_tube_y > TestTubeGame.HEIGHT:
-                        offset += 1
-
-                current_y = current_y - offset
+                # spacing = TestTubeGame.BUFFER*test_tube_y
+                # offset = TestTubeGame.SPACER*test_tube_y
+                #
+                #
+                # if current_row_number%2 == 1:
+                #     pass
+                # else:
+                #     current_y = current_y - spacing
+                #
+                # if current_row_number == row_number:
+                #     while current_y + test_tube_y > TestTubeGame.HEIGHT:
+                #         offset += 1
+                #
+                # current_y = current_y - offset
 
 
 

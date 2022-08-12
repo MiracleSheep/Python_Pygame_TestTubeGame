@@ -12,6 +12,7 @@
 import pygame
 import os
 import game
+import pyautogui
 import gui
 
 
@@ -19,23 +20,22 @@ import gui
 
 # Declaring constants of the game
 
-# Width of the screen
-WIDTH = 1000
-# Length of the screen
-HEIGHT = 1000
+# Width and Length of the screen
+WIDTH,HEIGHT = pyautogui.size()
+
 # The size of the test tubes
 VOLUME = 4
 # Window of the game
-WINDOW = pygame.display.set_mode((WIDTH,HEIGHT))
+WINDOW = pygame.display.set_mode((WIDTH, HEIGHT),pygame.FULLSCREEN)
 #The percent of the screen that the tubes should take up
 PERCENT_TUBE = 0.20
 # Percent of the screen height taken up by the game
 PERCENT_GAME_HEIGHT = 0.75
-PERCENT_GAME_WIDTH = 0.90
+# PERCENT_GAME_WIDTH = 0.90
 # Height buffer between test tubes
-BUFFER = 0.1
+BUFFER = 50
 # Height buffer between test tubes
-SPACER = 0.3
+SPACER = 50
 # The ratio of height to width (blank:one)
 HWR = 4
 # Colours
