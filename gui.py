@@ -1,4 +1,4 @@
-#This class is responsible for the majority of the gui in this game
+# This class is responsible for the majority of the gui in this game
 
 import game
 import pygame
@@ -7,16 +7,17 @@ import os
 import button
 import math
 
-#initializing the main class for the gui
+
+# initializing the main class for the gui
 class Gui:
 
-    #Init method
+    # Init method
     def __init__(self):
         self.Menu_Number = 0
         self.tubes = 5
         self.difficulty = 5
         self.game = None
-
+        self.input = True
 
     # This method draws the opening screen
     def opening_screen(self, background_position):
@@ -42,7 +43,7 @@ class Gui:
 
         if start_button.draw_button():
             self.Menu_Number = 1
-            print("Button clicked")
+
 
 
 
@@ -117,7 +118,7 @@ class Gui:
 
 
             TestTubeGame.WINDOW.fill([255,255,255])
-            TEST_TUBE_IMAGE = pygame.image.load(os.path.join('assets', 'test_tube_better.png'))
+            TEST_TUBE_IMAGE = pygame.image.load(os.path.join('assets', 'test_tube_better.jpeg'))
 
             #Getting the total amount of area that the testtubes will be in
             available_area = int(TestTubeGame.WIDTH*TestTubeGame.HEIGHT*TestTubeGame.PERCENT_GAME_HEIGHT)
@@ -136,55 +137,83 @@ class Gui:
             # available room for test tubes to be distributed
             available_height = int((TestTubeGame.HEIGHT*(TestTubeGame.PERCENT_GAME_HEIGHT)))
             # This variable will hold the vertical size of each row
-            row_size = test_tube_y + TestTubeGame.BUFFER
+            row_size = test_tube_y
             # this variable will hold the number of rows
             row_number = (available_height//row_size)+1
             # how many tubes per row
-            row_tube_number = self.game.number_of_tubes()//row_number
-            print("tubes per row: " + str(row_tube_number))
-            print("number of rows: " + str(row_number))
-            print("number of tubes " + str(self.game.number_of_tubes()))
-
+            row_tube_number = self.game.number_of_tubes()//(row_number-1)
 
 
             # Starting a for loop that will be meant to draw all of the test tubes
             for x in range(self.game.number_of_tubes()):
 
                 current_tube_number = (x % row_tube_number)
-                # print("Current tube number: " + str(current_tube_number))
                 current_row_number = (x//row_tube_number)
 
-
                 current_x = (TestTubeGame.WIDTH//(row_tube_number+1))*(current_tube_number + 1) - test_tube_x//2
-                current_y =  TestTubeGame.HEIGHT - ((available_height//(row_number)) * (current_row_number))
+                current_y =  ((TestTubeGame.HEIGHT - ((available_height//(row_number)) * (row_number - current_row_number)))) - test_tube_y//2 + current_row_number*(TestTubeGame.BUFFER*test_tube_y)
 
-                # spacing = TestTubeGame.BUFFER*test_tube_y
-                # offset = TestTubeGame.SPACER*test_tube_y
-                #
-                #
-                # if current_row_number%2 == 1:
-                #     pass
-                # else:
-                #     current_y = current_y - spacing
-                #
-                # if current_row_number == row_number:
-                #     while current_y + test_tube_y > TestTubeGame.HEIGHT:
-                #         offset += 1
-                #
-                # current_y = current_y - offset
-
-
-
-
-
+                rectangle = pygame.draw.rect(TestTubeGame.WINDOW, 255, [current_x,current_y,test_tube_x,test_tube_y])
                 TestTubeGame.WINDOW.blit(TEST_TUBE_IMAGE, (current_x, current_y))
 
-                #This loop is meant to fill up the test tubes with its colours
-                for y in range(self.game.tubearray[x].checkvolume()):
-                    pygame.draw.rect(TestTubeGame.WINDOW,self.game.tubearray[x].stack[y].colour, [current_x + (TestTubeGame.WIDTH//20 - 30)//2 ,(current_y + (TestTubeGame.HEIGHT//5 - 10) - ((TestTubeGame.HEIGHT//5)//TestTubeGame.VOLUME - 10)*y), TestTubeGame.WIDTH//20 - 30, (TestTubeGame.HEIGHT//5)//TestTubeGame.VOLUME - 10])
 
-    # def isclicked(self, current_x, current_y, test_tube_x, test_tube_y):
-    #     if ()
+
+                #drawing a rectangle around the selected test tube
+                if self.game.tubearray[x] in self.game.selected:
+                    pygame.draw.rect(TestTubeGame.WINDOW, 0, [current_x + test_tube_x//2 - (test_tube_x + test_tube_x*TestTubeGame.BORDER_AREA)//2 ,current_y + test_tube_y//2  - (test_tube_y + test_tube_y*TestTubeGame.BORDER_AREA)//2,
+                    test_tube_x + test_tube_x*TestTubeGame.BORDER_AREA, (test_tube_y + test_tube_y*TestTubeGame.BORDER_AREA)], 2)
+
+
+                # This loop is meant to fill up the test tubes with its colours
+                for y in range(self.game.tubearray[x].checkvolume()):
+                    pygame.draw.rect(TestTubeGame.WINDOW,self.game.tubearray[x].stack[y].colour,
+                    [current_x + test_tube_x//2 - test_tube_x*TestTubeGame.SQUARE_WIDTH//2  ,current_y + test_tube_y*TestTubeGame.SQUARE_HEIGHT - ((test_tube_y*TestTubeGame.SQUARE_HEIGHT)//TestTubeGame.VOLUME)*(y+1),
+                    test_tube_x*TestTubeGame.SQUARE_WIDTH, (test_tube_y*TestTubeGame.SQUARE_HEIGHT)//TestTubeGame.VOLUME]
+                    )
+
+                #addind a selected status to the tube object
+                if self.isclicked(rectangle) == True:
+                    if self.game.numselected() < 2:
+                        if self.game.tubearray[x] not in self.game.selected:
+                            self.game.select(self.game.tubearray[x])
+                        else:
+                            self.game.deselect(self.game.tubearray[x])
+
+
+
+            if self.game.numselected() == 2:
+                self.game.movecolour(self.game.selected[0], self.game.selected[1])
+                if self.game.iswon():
+                    self.Menu_Number = 0
+
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_r]:
+                self.game.restart()
+            elif keys[pygame.K_q]:
+                self.Menu_Number = 0
+
+
+
+
+
+
+
+
+
+
+    def isclicked(self, rect):
+
+            # Getting the coordinates of the player's mouse
+            pos = pygame.mouse.get_pos()
+            click = pygame.mouse.get_pressed()
+            if rect.collidepoint(pos[0], pos[1]) and click[0] == 1 and self.input == True:
+                self.input = False
+                return True
+            elif self.input == False and click[0] == 0:
+                self.input = True
+                return False
+            else:
+                return False
 
 
 

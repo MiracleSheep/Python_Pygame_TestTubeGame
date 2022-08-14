@@ -12,6 +12,8 @@ class TestTube:
         self.volume = TestTubeGame.VOLUME
         self.stack = stack
 
+
+
     # This function is intended to count the amount of volume in the test tube
     def checkvolume(self):
 
@@ -24,6 +26,7 @@ class TestTube:
         elif sum < 0:
             raise Exception("The volume counted is smaller than zero.")
         return sum
+
 
     #This method checks if the most recent color is equal to the parameter
     def iscoloursame(self, rgb):

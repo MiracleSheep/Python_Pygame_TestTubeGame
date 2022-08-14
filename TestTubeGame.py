@@ -22,8 +22,11 @@ import gui
 
 # Width and Length of the screen
 WIDTH,HEIGHT = pyautogui.size()
-
-# The size of the test tubes
+# the percent of the test tube width that the liquid will take up
+SQUARE_WIDTH = 0.85
+# the percent of the test tube height that the liquid will take up
+SQUARE_HEIGHT = 0.90
+# how many colours in each test tube
 VOLUME = 4
 # Window of the game
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT),pygame.FULLSCREEN)
@@ -33,11 +36,13 @@ PERCENT_TUBE = 0.20
 PERCENT_GAME_HEIGHT = 0.75
 # PERCENT_GAME_WIDTH = 0.90
 # Height buffer between test tubes
-BUFFER = 50
-# Height buffer between test tubes
-SPACER = 50
+BUFFER = 0.5
 # The ratio of height to width (blank:one)
 HWR = 4
+#The percentage of area that the border will be more than the test tube
+BORDER_AREA = 0.40
+
+
 # Colours
 WHITE = pygame.Color(255,255,255)
 RED = pygame.Color(255,0,0)
