@@ -6,12 +6,14 @@
   It will feature the game and also perhaps an algorithym capable of solving the game on its own.
   
 ## Features
-  * A test tube sorting game with up to ten colours
-  * A variable number of test tubes depending on player choice
+  * A liquid sorting game with up to ten colours
+  * A variable number of test tubes and colours depending on player choice
+  * A variable number of undos depending on player choice
   * Difficulty settings
-  * A hint system
-  * Maybe an algorithym that can solve the game on it's own
+  
+  ## Tools used
   
   
-#### Current Status: Unfinished
-  * Logic mostly finished
+  
+#### Current Status: Finished
+
