@@ -73,6 +73,8 @@ try:
     project = reactor.project
     dist_dir = project.expand_path("$dir_dist")
 
+
+
     for src_file in glob.glob(os.path.join(dist_dir, "*")):
         file_name = os.path.basename(src_file)
         target_file_name = os.path.join(script_dir, file_name)
