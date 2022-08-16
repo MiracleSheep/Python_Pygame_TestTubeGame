@@ -51,7 +51,7 @@ class Gui:
 
         # Drawing the title
         TestTubeGame.WINDOW.blit(TestTubeGame.TITLE_IMAGE_MODIFIED, (
-        TestTubeGame.WIDTH // 2 - (TestTubeGame.TITLE_IMAGE_MODIFIED.get_width()) // 2, TestTubeGame.HEIGHT * 0.2 - (
+            TestTubeGame.WIDTH // 2 - (TestTubeGame.TITLE_IMAGE_MODIFIED.get_width()) // 2, TestTubeGame.HEIGHT * 0.2 - (
             TestTubeGame.TITLE_IMAGE_MODIFIED.get_height()) // 2))
 
 
@@ -81,11 +81,11 @@ class Gui:
             pos_x = 0
 
         TestTubeGame.WINDOW.blit(TestTubeGame.DIFFICULTY_RAW, (
-        TestTubeGame.WIDTH // 2 - (TestTubeGame.DIFFICULTY_RAW.get_width()) // 2,
-        TestTubeGame.HEIGHT // 7 * 1 - (TestTubeGame.DIFFICULTY_RAW.get_height()) // 2))
+            TestTubeGame.WIDTH // 2 - (TestTubeGame.DIFFICULTY_RAW.get_width()) // 2,
+            TestTubeGame.HEIGHT // 7 * 1 - (TestTubeGame.DIFFICULTY_RAW.get_height()) // 2))
         TestTubeGame.WINDOW.blit(TestTubeGame.NUMBER_OF_UNDOS_MODIFIED, (
-        TestTubeGame.WIDTH // 2 - (TestTubeGame.NUMBER_OF_UNDOS_MODIFIED.get_width()) // 2,
-        TestTubeGame.HEIGHT // 7 * 3 - (TestTubeGame.NUMBER_OF_UNDOS_MODIFIED.get_height()) // 2))
+            TestTubeGame.WIDTH // 2 - (TestTubeGame.NUMBER_OF_UNDOS_MODIFIED.get_width()) // 2,
+            TestTubeGame.HEIGHT // 7 * 3 - (TestTubeGame.NUMBER_OF_UNDOS_MODIFIED.get_height()) // 2))
 
 
 
@@ -184,7 +184,7 @@ class Gui:
 
                 current_x = (TestTubeGame.WIDTH // (row_tube_number + 1)) * (current_tube_number + 1) - test_tube_x // 2
                 current_y = ((TestTubeGame.HEIGHT - ((available_height // (row_number)) * (row_number - current_row_number)))) - test_tube_y // 2 + current_row_number * (
-                            TestTubeGame.BUFFER * test_tube_y)
+                        TestTubeGame.BUFFER * test_tube_y)
 
                 rectangle = pygame.draw.rect(TestTubeGame.WINDOW, 255, [current_x, current_y, test_tube_x, test_tube_y])
                 TestTubeGame.WINDOW.blit(TEST_TUBE_IMAGE, (current_x, current_y))
@@ -238,10 +238,10 @@ class Gui:
         TestTubeGame.WINDOW.fill([255, 255, 255])
         TestTubeGame.WINDOW.blit(TestTubeGame.BRICK_MODIFIED, (0, 0))
         TestTubeGame.WINDOW.blit(TestTubeGame.CONTROLS_MODIFIED, (
-        TestTubeGame.WIDTH // 2 - TestTubeGame.CONTROLS_MODIFIED.get_width() // 2, TestTubeGame.HEIGHT // 8 * 5 - TestTubeGame.CONTROLS_MODIFIED.get_height() // 2))
+            TestTubeGame.WIDTH // 2 - TestTubeGame.CONTROLS_MODIFIED.get_width() // 2, TestTubeGame.HEIGHT // 8 * 5 - TestTubeGame.CONTROLS_MODIFIED.get_height() // 2))
         TestTubeGame.WINDOW.blit(TestTubeGame.INSTRUCTIONS_MODIFIED, (
-        TestTubeGame.WIDTH // 2 - TestTubeGame.CONTROLS_MODIFIED.get_width() // 2,
-        TestTubeGame.HEIGHT // 8 * 2 - TestTubeGame.INSTRUCTIONS_MODIFIED.get_height() // 2))
+            TestTubeGame.WIDTH // 2 - TestTubeGame.CONTROLS_MODIFIED.get_width() // 2,
+            TestTubeGame.HEIGHT // 8 * 2 - TestTubeGame.INSTRUCTIONS_MODIFIED.get_height() // 2))
 
 
 
@@ -260,20 +260,20 @@ class Gui:
         TestTubeGame.WINDOW.fill([255, 255, 255])
         TestTubeGame.WINDOW.blit(TestTubeGame.CONFET_MODIFIED, (0, 0))
         TestTubeGame.WINDOW.blit(TestTubeGame.WON_MODIFIED, (
-        TestTubeGame.WIDTH // 2 - TestTubeGame.WON_MODIFIED.get_width() // 2,
-        TestTubeGame.HEIGHT // 2 - TestTubeGame.WON_MODIFIED.get_height() // 2))
+            TestTubeGame.WIDTH // 2 - TestTubeGame.WON_MODIFIED.get_width() // 2,
+            TestTubeGame.HEIGHT // 2 - TestTubeGame.WON_MODIFIED.get_height() // 2))
         TestTubeGame.WINDOW.blit(TestTubeGame.AMONGUS_MODIFIED, (
-        TestTubeGame.WIDTH / 5 * 1 - TestTubeGame.AMONGUS_MODIFIED.get_width() // 2,
-        TestTubeGame.HEIGHT // 5 * 1 - TestTubeGame.AMONGUS_MODIFIED.get_height() // 2))
+            TestTubeGame.WIDTH / 5 * 1 - TestTubeGame.AMONGUS_MODIFIED.get_width() // 2,
+            TestTubeGame.HEIGHT // 5 * 1 - TestTubeGame.AMONGUS_MODIFIED.get_height() // 2))
         TestTubeGame.WINDOW.blit(TestTubeGame.HAROLD_MODIFIED, (
-        TestTubeGame.WIDTH // 5 * 1 - TestTubeGame.HAROLD_MODIFIED.get_width() // 2,
-        TestTubeGame.HEIGHT // 5 * 4 - TestTubeGame.HAROLD_MODIFIED.get_height() // 2))
+            TestTubeGame.WIDTH // 5 * 1 - TestTubeGame.HAROLD_MODIFIED.get_width() // 2,
+            TestTubeGame.HEIGHT // 5 * 4 - TestTubeGame.HAROLD_MODIFIED.get_height() // 2))
         TestTubeGame.WINDOW.blit(TestTubeGame.STONKS_MODIFIED, (
-        TestTubeGame.WIDTH // 5 * 4 - TestTubeGame.STONKS_MODIFIED.get_width() // 2,
-        TestTubeGame.HEIGHT // 5 * 1 - TestTubeGame.STONKS_MODIFIED.get_height() // 2))
+            TestTubeGame.WIDTH // 5 * 4 - TestTubeGame.STONKS_MODIFIED.get_width() // 2,
+            TestTubeGame.HEIGHT // 5 * 1 - TestTubeGame.STONKS_MODIFIED.get_height() // 2))
         TestTubeGame.WINDOW.blit(TestTubeGame.FORTNITE_MODIFIED, (
-        TestTubeGame.WIDTH // 5 * 4 - TestTubeGame.FORTNITE_MODIFIED.get_width() // 2,
-        TestTubeGame.HEIGHT // 5 * 4 - TestTubeGame.FORTNITE_MODIFIED.get_height() // 2))
+            TestTubeGame.WIDTH // 5 * 4 - TestTubeGame.FORTNITE_MODIFIED.get_width() // 2,
+            TestTubeGame.HEIGHT // 5 * 4 - TestTubeGame.FORTNITE_MODIFIED.get_height() // 2))
         if TestTubeGame.restart_button.draw_button():
             self.Menu_Number = 0
 
