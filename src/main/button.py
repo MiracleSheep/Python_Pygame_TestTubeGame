@@ -44,18 +44,18 @@ class Button:
         if self.isclicked():
 
 
-            pygame.draw.rect(TestTubeGame.WINDOW, [255, 255, 255], [self.x, self.y, self.width, self.length], self.br1,self.br2)
+            pygame.draw.rect(TestTubeGame.WINDOW, [255, 255, 255], [self.x, self.y, self.width, self.length], self.br1, self.br2)
             text = TestTubeGame.BUTTON_FONT.render(self.text, True, [0, 0, 0])
             return True
         elif self.ishovering():
-            pygame.draw.rect(TestTubeGame.WINDOW, [255, 255, 255], [self.x, self.y, self.width, self.length], self.br1,self.br2)
-            text = TestTubeGame.BUTTON_FONT.render(self.text, True, [0,0,0])
+            pygame.draw.rect(TestTubeGame.WINDOW, [255, 255, 255], [self.x, self.y, self.width, self.length], self.br1, self.br2)
+            text = TestTubeGame.BUTTON_FONT.render(self.text, True, [0, 0, 0])
         else:
             # print("self still set to " + str(self.selected))
             if self.selected == False:
-                pygame.draw.rect(TestTubeGame.WINDOW, self.colour, [self.x, self.y, self.width, self.length], self.br1,self.br2)
+                pygame.draw.rect(TestTubeGame.WINDOW, self.colour, [self.x, self.y, self.width, self.length], self.br1, self.br2)
             else:
-                pygame.draw.rect(TestTubeGame.WINDOW, self.selectedcolour, [self.x, self.y, self.width, self.length],self.br1, self.br2)
+                pygame.draw.rect(TestTubeGame.WINDOW, self.selectedcolour, [self.x, self.y, self.width, self.length], self.br1, self.br2)
             text = TestTubeGame.BUTTON_FONT.render(self.text, True, self.textcolour)
 
 
@@ -63,7 +63,7 @@ class Button:
 
         #Drawing in the text
         textsize = text.get_size()
-        TestTubeGame.WINDOW.blit(text, (self.x + (self.width - textsize[0])//2, self.y + (self.length - textsize[1])//2))
+        TestTubeGame.WINDOW.blit(text, (self.x + (self.width - textsize[0]) // 2, self.y + (self.length - textsize[1]) // 2))
         return False
 
     # This method will be used to detect if a button is clicked

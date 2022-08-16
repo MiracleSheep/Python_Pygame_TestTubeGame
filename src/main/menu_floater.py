@@ -22,11 +22,12 @@ class Menu_Floater:
 
     #Method that chooses a random x value and sets the image to it
     def reset(self):
-        self.x = random.randint(0,TestTubeGame.WIDTH - self.current_image.get_width())
+        self.x = random.randint(0, TestTubeGame.WIDTH - self.current_image.get_width())
         self.angle = 0
         self.s = random.randint(0,5)
         self.sp = random.randint(1,15)
-        self.current_image = pygame.transform.scale(self.image, (random.randint(int(TestTubeGame.WIDTH//40), int(TestTubeGame.WIDTH//20)),random.randint(int(TestTubeGame.HEIGHT//40),int(TestTubeGame.HEIGHT//20))))
+        self.current_image = pygame.transform.scale(self.image, (random.randint(int(TestTubeGame.WIDTH // 40), int(
+            TestTubeGame.WIDTH // 20)), random.randint(int(TestTubeGame.HEIGHT // 40), int(TestTubeGame.HEIGHT // 20))))
         if self.direction:
             self.y = TestTubeGame.HEIGHT
         else:

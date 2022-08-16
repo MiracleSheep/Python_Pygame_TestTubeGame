@@ -3,13 +3,10 @@
 import game
 import pygame
 import TestTubeGame
-import os
-import button
 import math
 
 
 # initializing the main class for the gui
-import menu_floater
 
 
 class Gui:
@@ -53,7 +50,9 @@ class Gui:
 
 
         # Drawing the title
-        TestTubeGame.WINDOW.blit(TestTubeGame.TITLE_IMAGE_MODIFIED, (TestTubeGame.WIDTH//2 - (TestTubeGame.TITLE_IMAGE_MODIFIED.get_width())//2, TestTubeGame.HEIGHT*0.2 - (TestTubeGame.TITLE_IMAGE_MODIFIED.get_height())//2))
+        TestTubeGame.WINDOW.blit(TestTubeGame.TITLE_IMAGE_MODIFIED, (
+        TestTubeGame.WIDTH // 2 - (TestTubeGame.TITLE_IMAGE_MODIFIED.get_width()) // 2, TestTubeGame.HEIGHT * 0.2 - (
+            TestTubeGame.TITLE_IMAGE_MODIFIED.get_height()) // 2))
 
 
         if TestTubeGame.start_button.draw_button():
@@ -81,8 +80,12 @@ class Gui:
             TestTubeGame.WINDOW.blit(TestTubeGame.TEST_TUBE_OPENING_SCREEN_IMAGE, (TestTubeGame.WIDTH + pos_x, 0))
             pos_x = 0
 
-        TestTubeGame.WINDOW.blit(TestTubeGame.DIFFICULTY_RAW, (TestTubeGame.WIDTH // 2 - (TestTubeGame.DIFFICULTY_RAW.get_width()) // 2,TestTubeGame.HEIGHT//7*1 - (TestTubeGame.DIFFICULTY_RAW.get_height()) // 2))
-        TestTubeGame.WINDOW.blit(TestTubeGame.NUMBER_OF_UNDOS_MODIFIED, (TestTubeGame.WIDTH // 2 - (TestTubeGame.NUMBER_OF_UNDOS_MODIFIED.get_width()) // 2,TestTubeGame.HEIGHT // 7 * 3 - (TestTubeGame.NUMBER_OF_UNDOS_MODIFIED.get_height()) // 2))
+        TestTubeGame.WINDOW.blit(TestTubeGame.DIFFICULTY_RAW, (
+        TestTubeGame.WIDTH // 2 - (TestTubeGame.DIFFICULTY_RAW.get_width()) // 2,
+        TestTubeGame.HEIGHT // 7 * 1 - (TestTubeGame.DIFFICULTY_RAW.get_height()) // 2))
+        TestTubeGame.WINDOW.blit(TestTubeGame.NUMBER_OF_UNDOS_MODIFIED, (
+        TestTubeGame.WIDTH // 2 - (TestTubeGame.NUMBER_OF_UNDOS_MODIFIED.get_width()) // 2,
+        TestTubeGame.HEIGHT // 7 * 3 - (TestTubeGame.NUMBER_OF_UNDOS_MODIFIED.get_height()) // 2))
 
 
 
@@ -146,25 +149,25 @@ class Gui:
     def game_screen(self):
 
 
-            TestTubeGame.WINDOW.fill([255,255,255])
-            TestTubeGame.WINDOW.blit(TestTubeGame.LAB_MODIFIED, (0,0))
+            TestTubeGame.WINDOW.fill([255, 255, 255])
+            TestTubeGame.WINDOW.blit(TestTubeGame.LAB_MODIFIED, (0, 0))
 
             #Getting the total amount of area that the testtubes will be in
-            available_area = int(TestTubeGame.WIDTH*TestTubeGame.HEIGHT*TestTubeGame.PERCENT_GAME_HEIGHT)
+            available_area = int(TestTubeGame.WIDTH * TestTubeGame.HEIGHT * TestTubeGame.PERCENT_GAME_HEIGHT)
 
             #Getting the total amount of allowed space for the testubes to take up
-            total_test_tube_size = int(available_area*TestTubeGame.PERCENT_TUBE)
+            total_test_tube_size = int(available_area * TestTubeGame.PERCENT_TUBE)
             # Getting the allowed area for each test tube
             test_tube_size = total_test_tube_size//self.game.number_of_tubes()
             # Getting the size units that will be used in the ratio
-            test_tube_x = math.sqrt(test_tube_size//TestTubeGame.HWR)
-            test_tube_y = test_tube_x*TestTubeGame.HWR
+            test_tube_x = math.sqrt(test_tube_size // TestTubeGame.HWR)
+            test_tube_y = test_tube_x * TestTubeGame.HWR
 
             # This is the size of the iage
-            TEST_TUBE_IMAGE = pygame.transform.scale(TestTubeGame.TEST_TUBE_IMAGE,(test_tube_x, test_tube_y))
+            TEST_TUBE_IMAGE = pygame.transform.scale(TestTubeGame.TEST_TUBE_IMAGE, (test_tube_x, test_tube_y))
 
             # available room for test tubes to be distributed
-            available_height = int((TestTubeGame.HEIGHT*(TestTubeGame.PERCENT_GAME_HEIGHT)))
+            available_height = int((TestTubeGame.HEIGHT * (TestTubeGame.PERCENT_GAME_HEIGHT)))
             # This variable will hold the vertical size of each row
             row_size = test_tube_y
             # this variable will hold the number of rows
@@ -179,26 +182,27 @@ class Gui:
                 current_tube_number = (x % row_tube_number)
                 current_row_number = (x//row_tube_number)
 
-                current_x = (TestTubeGame.WIDTH//(row_tube_number+1))*(current_tube_number + 1) - test_tube_x//2
-                current_y =  ((TestTubeGame.HEIGHT - ((available_height//(row_number)) * (row_number - current_row_number)))) - test_tube_y//2 + current_row_number*(TestTubeGame.BUFFER*test_tube_y)
+                current_x = (TestTubeGame.WIDTH // (row_tube_number + 1)) * (current_tube_number + 1) - test_tube_x // 2
+                current_y = ((TestTubeGame.HEIGHT - ((available_height // (row_number)) * (row_number - current_row_number)))) - test_tube_y // 2 + current_row_number * (
+                            TestTubeGame.BUFFER * test_tube_y)
 
-                rectangle = pygame.draw.rect(TestTubeGame.WINDOW, 255, [current_x,current_y,test_tube_x,test_tube_y])
+                rectangle = pygame.draw.rect(TestTubeGame.WINDOW, 255, [current_x, current_y, test_tube_x, test_tube_y])
                 TestTubeGame.WINDOW.blit(TEST_TUBE_IMAGE, (current_x, current_y))
 
 
 
                 #drawing a rectangle around the selected test tube
                 if self.game.tubearray[x] in self.game.selected:
-                    pygame.draw.rect(TestTubeGame.WINDOW, 0, [current_x + test_tube_x//2 - (test_tube_x + test_tube_x*TestTubeGame.BORDER_AREA)//2 ,current_y + test_tube_y//2  - (test_tube_y + test_tube_y*TestTubeGame.BORDER_AREA)//2,
-                    test_tube_x + test_tube_x*TestTubeGame.BORDER_AREA, (test_tube_y + test_tube_y*TestTubeGame.BORDER_AREA)], 2)
+                    pygame.draw.rect(TestTubeGame.WINDOW, 0, [current_x + test_tube_x // 2 - (test_tube_x + test_tube_x * TestTubeGame.BORDER_AREA) // 2 , current_y + test_tube_y // 2 - (test_tube_y + test_tube_y * TestTubeGame.BORDER_AREA) // 2,
+                                                              test_tube_x + test_tube_x * TestTubeGame.BORDER_AREA, (test_tube_y + test_tube_y * TestTubeGame.BORDER_AREA)], 2)
 
 
                 # This loop is meant to fill up the test tubes with its colours
                 for y in range(self.game.tubearray[x].checkvolume()):
-                    pygame.draw.rect(TestTubeGame.WINDOW,self.game.tubearray[x].stack[y].colour,
-                    [current_x + test_tube_x//2 - test_tube_x*TestTubeGame.SQUARE_WIDTH//2  ,current_y + test_tube_y*TestTubeGame.SQUARE_HEIGHT - ((test_tube_y*TestTubeGame.SQUARE_HEIGHT)//TestTubeGame.VOLUME)*(y+1),
-                    test_tube_x*TestTubeGame.SQUARE_WIDTH, (test_tube_y*TestTubeGame.SQUARE_HEIGHT)//TestTubeGame.VOLUME]
-                    )
+                    pygame.draw.rect(TestTubeGame.WINDOW, self.game.tubearray[x].stack[y].colour,
+                                     [current_x + test_tube_x // 2 - test_tube_x * TestTubeGame.SQUARE_WIDTH // 2  , current_y + test_tube_y * TestTubeGame.SQUARE_HEIGHT - ((test_tube_y * TestTubeGame.SQUARE_HEIGHT) // TestTubeGame.VOLUME) * (y + 1),
+                                      test_tube_x * TestTubeGame.SQUARE_WIDTH, (test_tube_y * TestTubeGame.SQUARE_HEIGHT) // TestTubeGame.VOLUME]
+                                     )
 
                 #addind a selected status to the tube object
                 if self.isclicked(rectangle) == True:
@@ -232,9 +236,12 @@ class Gui:
     # Menu to show the player how to play
     def tutorial_screen(self):
         TestTubeGame.WINDOW.fill([255, 255, 255])
-        TestTubeGame.WINDOW.blit(TestTubeGame.BRICK_MODIFIED, (0,0))
-        TestTubeGame.WINDOW.blit(TestTubeGame.CONTROLS_MODIFIED, (TestTubeGame.WIDTH//2 - TestTubeGame.CONTROLS_MODIFIED.get_width()//2, TestTubeGame.HEIGHT //8 * 5 - TestTubeGame.CONTROLS_MODIFIED.get_height()//2))
-        TestTubeGame.WINDOW.blit(TestTubeGame.INSTRUCTIONS_MODIFIED, (TestTubeGame.WIDTH//2 - TestTubeGame.CONTROLS_MODIFIED.get_width()//2,TestTubeGame.HEIGHT//8 * 2 - TestTubeGame.INSTRUCTIONS_MODIFIED.get_height()//2))
+        TestTubeGame.WINDOW.blit(TestTubeGame.BRICK_MODIFIED, (0, 0))
+        TestTubeGame.WINDOW.blit(TestTubeGame.CONTROLS_MODIFIED, (
+        TestTubeGame.WIDTH // 2 - TestTubeGame.CONTROLS_MODIFIED.get_width() // 2, TestTubeGame.HEIGHT // 8 * 5 - TestTubeGame.CONTROLS_MODIFIED.get_height() // 2))
+        TestTubeGame.WINDOW.blit(TestTubeGame.INSTRUCTIONS_MODIFIED, (
+        TestTubeGame.WIDTH // 2 - TestTubeGame.CONTROLS_MODIFIED.get_width() // 2,
+        TestTubeGame.HEIGHT // 8 * 2 - TestTubeGame.INSTRUCTIONS_MODIFIED.get_height() // 2))
 
 
 
@@ -251,12 +258,22 @@ class Gui:
     # Menu to display the pplayer's victory
     def victory_screen(self):
         TestTubeGame.WINDOW.fill([255, 255, 255])
-        TestTubeGame.WINDOW.blit(TestTubeGame.CONFET_MODIFIED, (0,0))
-        TestTubeGame.WINDOW.blit(TestTubeGame.WON_MODIFIED, (TestTubeGame.WIDTH//2 - TestTubeGame.WON_MODIFIED.get_width()//2,TestTubeGame.HEIGHT//2 - TestTubeGame.WON_MODIFIED.get_height()//2))
-        TestTubeGame.WINDOW.blit(TestTubeGame.AMONGUS_MODIFIED, (TestTubeGame.WIDTH/5*1 - TestTubeGame.AMONGUS_MODIFIED.get_width()//2,TestTubeGame.HEIGHT//5*1 - TestTubeGame.AMONGUS_MODIFIED.get_height()//2))
-        TestTubeGame.WINDOW.blit(TestTubeGame.HAROLD_MODIFIED, (TestTubeGame.WIDTH//5*1 - TestTubeGame.HAROLD_MODIFIED.get_width()//2,TestTubeGame.HEIGHT//5*4 - TestTubeGame.HAROLD_MODIFIED.get_height()//2))
-        TestTubeGame.WINDOW.blit(TestTubeGame.STONKS_MODIFIED, (TestTubeGame.WIDTH//5*4 - TestTubeGame.STONKS_MODIFIED.get_width()//2,TestTubeGame.HEIGHT//5*1 - TestTubeGame.STONKS_MODIFIED.get_height()//2))
-        TestTubeGame.WINDOW.blit(TestTubeGame.FORTNITE_MODIFIED, (TestTubeGame.WIDTH//5*4 - TestTubeGame.FORTNITE_MODIFIED.get_width()//2,TestTubeGame.HEIGHT//5*4 - TestTubeGame.FORTNITE_MODIFIED.get_height()//2))
+        TestTubeGame.WINDOW.blit(TestTubeGame.CONFET_MODIFIED, (0, 0))
+        TestTubeGame.WINDOW.blit(TestTubeGame.WON_MODIFIED, (
+        TestTubeGame.WIDTH // 2 - TestTubeGame.WON_MODIFIED.get_width() // 2,
+        TestTubeGame.HEIGHT // 2 - TestTubeGame.WON_MODIFIED.get_height() // 2))
+        TestTubeGame.WINDOW.blit(TestTubeGame.AMONGUS_MODIFIED, (
+        TestTubeGame.WIDTH / 5 * 1 - TestTubeGame.AMONGUS_MODIFIED.get_width() // 2,
+        TestTubeGame.HEIGHT // 5 * 1 - TestTubeGame.AMONGUS_MODIFIED.get_height() // 2))
+        TestTubeGame.WINDOW.blit(TestTubeGame.HAROLD_MODIFIED, (
+        TestTubeGame.WIDTH // 5 * 1 - TestTubeGame.HAROLD_MODIFIED.get_width() // 2,
+        TestTubeGame.HEIGHT // 5 * 4 - TestTubeGame.HAROLD_MODIFIED.get_height() // 2))
+        TestTubeGame.WINDOW.blit(TestTubeGame.STONKS_MODIFIED, (
+        TestTubeGame.WIDTH // 5 * 4 - TestTubeGame.STONKS_MODIFIED.get_width() // 2,
+        TestTubeGame.HEIGHT // 5 * 1 - TestTubeGame.STONKS_MODIFIED.get_height() // 2))
+        TestTubeGame.WINDOW.blit(TestTubeGame.FORTNITE_MODIFIED, (
+        TestTubeGame.WIDTH // 5 * 4 - TestTubeGame.FORTNITE_MODIFIED.get_width() // 2,
+        TestTubeGame.HEIGHT // 5 * 4 - TestTubeGame.FORTNITE_MODIFIED.get_height() // 2))
         if TestTubeGame.restart_button.draw_button():
             self.Menu_Number = 0
 

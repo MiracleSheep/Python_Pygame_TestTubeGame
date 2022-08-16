@@ -11,7 +11,6 @@
 # Library for pygame (end 2d graphics)
 import pygame
 import os
-import game
 import pyautogui
 import gui
 import button
@@ -75,42 +74,42 @@ pygame.display.set_caption("TestTubeGame")
 
 #images
 # Loading in the miage that will be used as a background for the opneing screen
-TITLE_IMAGE = pygame.image.load(os.path.join('../../../assets', 'Title.png'))
+TITLE_IMAGE = pygame.image.load(os.path.join('assets', 'Title.png'))
 TITLE_IMAGE_MODIFIED = pygame.transform.scale(TITLE_IMAGE, (WIDTH * 0.4, HEIGHT * 0.3))
-TEST_TUBE_ROW_IMAGE = pygame.image.load(os.path.join('../../../assets', 'TestTubeGame_TestTubeRow.png'))
+TEST_TUBE_ROW_IMAGE = pygame.image.load(os.path.join('assets', 'TestTubeGame_TestTubeRow.png'))
 TEST_TUBE_OPENING_SCREEN_IMAGE = pygame.transform.scale(TEST_TUBE_ROW_IMAGE, (WIDTH, HEIGHT))
-TEST_TUBE_IMAGE = pygame.image.load(os.path.join('../../../assets', 'test_tube_better.jpeg'))
-DIFFICULTY_RAW = pygame.image.load(os.path.join('../../../assets', 'Difficulty.png'))
-NUMBER_OF_UNDOS_RAW = pygame.image.load(os.path.join('../../../assets', 'Number_of_Undos.png'))
+TEST_TUBE_IMAGE = pygame.image.load(os.path.join('assets', 'test_tube_better.jpeg'))
+DIFFICULTY_RAW = pygame.image.load(os.path.join('assets', 'Difficulty.png'))
+NUMBER_OF_UNDOS_RAW = pygame.image.load(os.path.join('assets', 'Number_of_Undos.png'))
 DIFFICULTY_MODIFIED = pygame.transform.scale(DIFFICULTY_RAW,(WIDTH*0.2, HEIGHT*0.1))
 NUMBER_OF_UNDOS_MODIFIED = pygame.transform.scale(NUMBER_OF_UNDOS_RAW,(WIDTH*0.2, HEIGHT*0.1))
-TUBE_RAW = pygame.image.load(os.path.join('../../../assets', 'Tube.png'))
-TUBE1_RAW = pygame.image.load(os.path.join('../../../assets', 'Tube1.png'))
-TUBE2_RAW = pygame.image.load(os.path.join('../../../assets', 'tube2.png'))
-TUBE3_RAW = pygame.image.load(os.path.join('../../../assets', 'tube3.png'))
-TUBE4_RAW = pygame.image.load(os.path.join('../../../assets', 'tube4.png'))
-WON_RAW = pygame.image.load(os.path.join('../../../assets', 'You_Win.png'))
-AMONGUS_RAW = pygame.image.load(os.path.join('../../../assets', 'Amongus.jpeg'))
-CONFET_RAW = pygame.image.load(os.path.join('../../../assets', 'confet.jpeg'))
-HAROLD_RAW = pygame.image.load(os.path.join('../../../assets', 'harold.png'))
-STONKS_RAW = pygame.image.load(os.path.join('../../../assets', 'stonks.png'))
-FORNITE_RAW = pygame.image.load(os.path.join('../../../assets', 'plzbepng.png'))
+TUBE_RAW = pygame.image.load(os.path.join('assets', 'Tube.png'))
+TUBE1_RAW = pygame.image.load(os.path.join('assets', 'Tube1.png'))
+TUBE2_RAW = pygame.image.load(os.path.join('assets', 'tube2.png'))
+TUBE3_RAW = pygame.image.load(os.path.join('assets', 'tube3.png'))
+TUBE4_RAW = pygame.image.load(os.path.join('assets', 'tube4.png'))
+WON_RAW = pygame.image.load(os.path.join('assets', 'You_Win.png'))
+AMONGUS_RAW = pygame.image.load(os.path.join('assets', 'Amongus.jpeg'))
+CONFET_RAW = pygame.image.load(os.path.join('assets', 'confet.jpeg'))
+HAROLD_RAW = pygame.image.load(os.path.join('assets', 'harold.png'))
+STONKS_RAW = pygame.image.load(os.path.join('assets', 'stonks.png'))
+FORNITE_RAW = pygame.image.load(os.path.join('assets', 'plzbepng.png'))
 WON_MODIFIED = pygame.transform.scale(WON_RAW,(WIDTH*0.2, HEIGHT*0.1))
 CONFET_MODIFIED = pygame.transform.scale(CONFET_RAW,(WIDTH, HEIGHT))
 AMONGUS_MODIFIED = pygame.transform.scale(AMONGUS_RAW,(WIDTH*0.2, HEIGHT*0.2))
 HAROLD_MODIFIED = pygame.transform.scale(HAROLD_RAW,(WIDTH*0.2, HEIGHT*0.2))
 STONKS_MODIFIED = pygame.transform.scale(STONKS_RAW,(WIDTH*0.2, HEIGHT*0.2))
 FORTNITE_MODIFIED = pygame.transform.scale(FORNITE_RAW,(WIDTH*0.2, HEIGHT*0.2))
-CONTROLS_RAW = pygame.image.load(os.path.join('../../../assets', 'Controls.png'))
-INSTRUCTIONS_RAW = pygame.image.load(os.path.join('../../../assets', 'Instructions.png'))
+CONTROLS_RAW = pygame.image.load(os.path.join('assets', 'Controls.png'))
+INSTRUCTIONS_RAW = pygame.image.load(os.path.join('assets', 'Instructions.png'))
 CONTROLS_MODIFIED = pygame.transform.scale(CONTROLS_RAW,(WIDTH*0.3, HEIGHT*0.3))
 INSTRUCTIONS_MODIFIED = pygame.transform.scale(INSTRUCTIONS_RAW,(WIDTH*0.5, HEIGHT*0.4))
-BRICK_RAW = pygame.image.load(os.path.join('../../../assets', 'bricks.jpeg'))
+BRICK_RAW = pygame.image.load(os.path.join('assets', 'bricks.jpeg'))
 BRICK_MODIFIED = pygame.transform.scale(BRICK_RAW,(WIDTH, HEIGHT))
 
 
 
-LAB_RAW = pygame.image.load(os.path.join('../../../assets', 'lab.png'))
+LAB_RAW = pygame.image.load(os.path.join('assets', 'lab.png'))
 LAB_MODIFIED = pygame.transform.scale(LAB_RAW,(WIDTH, HEIGHT))
 
 # These are menu floaters for the start screen
@@ -131,29 +130,29 @@ floater_10 = menu_floater.Menu_Floater(TUBE4_RAW, False)
 # Here are a load of buttons
 
 # Creating the menu button
-start_button = button.Button(WIDTH // 2 - (WIDTH * 0.08) // 2,HEIGHT // 7 * 3 - (HEIGHT * 0.1) // 2, WIDTH * 0.08,HEIGHT * 0.1, [0, 0, 0], "Play", [255, 255, 255], 0, 30, [255, 255, 255], False)
+start_button = button.Button(WIDTH // 2 - (WIDTH * 0.08) // 2, HEIGHT // 7 * 3 - (HEIGHT * 0.1) // 2, WIDTH * 0.08, HEIGHT * 0.1, [0, 0, 0], "Play", [255, 255, 255], 0, 30, [255, 255, 255], False)
 
 # These are buttons that will be used in order to detect how many colours will be used
-easy_difficulty_button = button.Button((WIDTH // 4) - (WIDTH * 0.08) // 2,(HEIGHT // 7) * 2 - (HEIGHT * 0.1) // 2,WIDTH * 0.08, HEIGHT * 0.1, [255, 0, 0], "Easy",[255, 255, 255], 0, 15, [0, 0, 255], True)
-medium_difficulty_button = button.Button((WIDTH // 4) * 2 - (WIDTH * 0.08) // 2,(HEIGHT // 7) * 2 - (HEIGHT * 0.1) // 2,WIDTH * 0.08, HEIGHT * 0.1, [255, 0, 0], "Medium",[255, 255, 255], 0, 15, [0, 0, 255], True)
-hard_difficulty_button = button.Button((WIDTH // 4) * 3 - (WIDTH * 0.08) // 2,(HEIGHT // 7) * 2 - (HEIGHT * 0.1) // 2,WIDTH * 0.08, HEIGHT * 0.1, [255, 0, 0], "Hard",[255, 255, 255], 0, 15, [0, 0, 255], True)
+easy_difficulty_button = button.Button((WIDTH // 4) - (WIDTH * 0.08) // 2, (HEIGHT // 7) * 2 - (HEIGHT * 0.1) // 2, WIDTH * 0.08, HEIGHT * 0.1, [255, 0, 0], "Easy", [255, 255, 255], 0, 15, [0, 0, 255], True)
+medium_difficulty_button = button.Button((WIDTH // 4) * 2 - (WIDTH * 0.08) // 2, (HEIGHT // 7) * 2 - (HEIGHT * 0.1) // 2, WIDTH * 0.08, HEIGHT * 0.1, [255, 0, 0], "Medium", [255, 255, 255], 0, 15, [0, 0, 255], True)
+hard_difficulty_button = button.Button((WIDTH // 4) * 3 - (WIDTH * 0.08) // 2, (HEIGHT // 7) * 2 - (HEIGHT * 0.1) // 2, WIDTH * 0.08, HEIGHT * 0.1, [255, 0, 0], "Hard", [255, 255, 255], 0, 15, [0, 0, 255], True)
 
 # These are buttons that will be used to detect the undo limit
-easy_reverse_button = button.Button((WIDTH // 4) - (WIDTH * 0.08) // 2,(HEIGHT // 7) * 4 - (HEIGHT * 0.1) // 2,WIDTH * 0.08, HEIGHT * 0.1, [255, 0, 0], "Infinite",[255, 255, 255], 0, 15, [0, 0, 255], True)
-medium_reverse_button = button.Button((WIDTH // 4) * 2 - (WIDTH * 0.08) // 2,(HEIGHT // 7) * 4 - (HEIGHT * 0.1) // 2,WIDTH * 0.08, HEIGHT * 0.1, [255, 0, 0], "Ten",[255, 255, 255], 0, 15, [0, 0, 255], True)
-hard_reverse_button = button.Button((WIDTH // 4) * 3 - (WIDTH * 0.08) // 2,(HEIGHT // 7) * 4 - (HEIGHT * 0.1) // 2,WIDTH * 0.08, HEIGHT * 0.1, [255, 0, 0], "Five",[255, 255, 255], 0, 15, [0, 0, 255], True)
+easy_reverse_button = button.Button((WIDTH // 4) - (WIDTH * 0.08) // 2, (HEIGHT // 7) * 4 - (HEIGHT * 0.1) // 2, WIDTH * 0.08, HEIGHT * 0.1, [255, 0, 0], "Infinite", [255, 255, 255], 0, 15, [0, 0, 255], True)
+medium_reverse_button = button.Button((WIDTH // 4) * 2 - (WIDTH * 0.08) // 2, (HEIGHT // 7) * 4 - (HEIGHT * 0.1) // 2, WIDTH * 0.08, HEIGHT * 0.1, [255, 0, 0], "Ten", [255, 255, 255], 0, 15, [0, 0, 255], True)
+hard_reverse_button = button.Button((WIDTH // 4) * 3 - (WIDTH * 0.08) // 2, (HEIGHT // 7) * 4 - (HEIGHT * 0.1) // 2, WIDTH * 0.08, HEIGHT * 0.1, [255, 0, 0], "Five", [255, 255, 255], 0, 15, [0, 0, 255], True)
 
 # This is the continue button
-continue_button = button.Button((WIDTH // 12) * 10 - (WIDTH * 0.2) // 2,(HEIGHT // 7) * 6 - (HEIGHT * 0.1) // 2,WIDTH * 0.2, HEIGHT * 0.1, [255, 0, 0], "Start",[255, 255, 255], 0, 15, [255, 255, 255], False)
+continue_button = button.Button((WIDTH // 12) * 10 - (WIDTH * 0.2) // 2, (HEIGHT // 7) * 6 - (HEIGHT * 0.1) // 2, WIDTH * 0.2, HEIGHT * 0.1, [255, 0, 0], "Start", [255, 255, 255], 0, 15, [255, 255, 255], False)
 
 # This is the button that will be used for the how to play screen
-tutorial_button = button.Button((WIDTH // 12) * 2 - (WIDTH * 0.2) // 2,(HEIGHT // 7) * 6 - (HEIGHT * 0.1) // 2,WIDTH * 0.2, HEIGHT * 0.1, [255, 0, 0], "How to play",[255, 255, 255], 0, 15, [255, 255, 255], False)
+tutorial_button = button.Button((WIDTH // 12) * 2 - (WIDTH * 0.2) // 2, (HEIGHT // 7) * 6 - (HEIGHT * 0.1) // 2, WIDTH * 0.2, HEIGHT * 0.1, [255, 0, 0], "How to play", [255, 255, 255], 0, 15, [255, 255, 255], False)
 
 #restart button
-restart_button = button.Button((WIDTH // 2) - (WIDTH * 0.3) // 2,(HEIGHT // 8) * 5 - (HEIGHT * 0.1) // 2,WIDTH * 0.3, HEIGHT * 0.1, [0, 255, 0], "Return To Start",[255, 255, 255], 0, 50, [255, 255, 255], False)
+restart_button = button.Button((WIDTH // 2) - (WIDTH * 0.3) // 2, (HEIGHT // 8) * 5 - (HEIGHT * 0.1) // 2, WIDTH * 0.3, HEIGHT * 0.1, [0, 255, 0], "Return To Start", [255, 255, 255], 0, 50, [255, 255, 255], False)
 
 #return button
-return_button = button.Button((WIDTH // 2) - (WIDTH * 0.2) // 2,(HEIGHT // 8) * 7 - (HEIGHT * 0.1) // 2,WIDTH * 0.2, HEIGHT * 0.1, [121, 17, 186], "Return",[255, 255, 255], 0, 50, [255, 255, 255], False)
+return_button = button.Button((WIDTH // 2) - (WIDTH * 0.2) // 2, (HEIGHT // 8) * 7 - (HEIGHT * 0.1) // 2, WIDTH * 0.2, HEIGHT * 0.1, [121, 17, 186], "Return", [255, 255, 255], 0, 50, [255, 255, 255], False)
 
 
 # Main function for the program
