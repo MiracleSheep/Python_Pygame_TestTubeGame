@@ -1,5 +1,7 @@
 #   -*- coding: utf-8 -*-
-from pybuilder.core import use_plugin, init
+from os import path
+
+from pybuilder.core import use_plugin, init, task
 
 use_plugin("python.core")
 use_plugin("python.unittest")
@@ -14,3 +16,4 @@ default_task = "publish"
 @init
 def set_properties(project):
     pass
+
