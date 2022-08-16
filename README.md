@@ -2,8 +2,7 @@
 
 
 ## Description
-  This is a copy of a game that I saw on my phone and decided I wanted to make.
-  It will feature the game and also perhaps an algorithym capable of solving the game on its own.
+  This is a copy of a game that I saw on my phone and decided I wanted to make. That is all.
   
 ## Features
   * A liquid sorting game with up to ten colours
