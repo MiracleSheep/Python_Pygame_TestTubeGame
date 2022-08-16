@@ -10,11 +10,6 @@
   * A variable number of undos depending on player choice
   * Difficulty settings
   
- ## Tools used
- > This was my first time using python for a graphics game, so I tried out a library called pygame. In order to make executables for MacOS and Windows, I used Py2app and PyInstaller, respectively.
-
-## Running 
-  
 
 #### Current Status: Finished
 
