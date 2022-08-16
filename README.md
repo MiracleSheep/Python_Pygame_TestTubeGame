@@ -11,18 +11,9 @@
   * Difficulty settings
   
  ## Tools used
- > This was my first time using python for a graphics game, so I tried out a library called pygame. I also used a build tool known as pybuilder. Finally, in order to make executables for MacOS and Windows, I used Py2app and PyInstaller, respectively.
+ > This was my first time using python for a graphics game, so I tried out a library called pygame. In order to make executables for MacOS and Windows, I used Py2app and PyInstaller, respectively.
 
-## Building and Running
-
-### Building
-1. Pull this repository from Github: ``git clone https://github.com/MiracleSheep/Javascript_Discord_PollBot.git``
-2. Navigate to the pulled repository
-3. Install pybuilder; ``pip install pybuilder``
-4. Build the project: ``pyb``
-5. Find the distribution in ``Target/dist/``
-6. The main file is TestTubeGame. Execute that to start the program.
-  
+## Running 
   
 
 #### Current Status: Finished
